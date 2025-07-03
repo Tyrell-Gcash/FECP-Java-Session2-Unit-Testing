@@ -6,7 +6,7 @@ public class Main {
 
     static Scanner scanner = new Scanner(System.in);
 
-    private static BankAccount lookForAccount(ArrayList<BankAccount> bankAccounts, int accountNumber){
+    public static BankAccount lookForAccount(ArrayList<BankAccount> bankAccounts, int accountNumber){
 
         for (int i =0; i < bankAccounts.size(); i++){
             if(bankAccounts.get(i).getAccountNumber() == accountNumber){
@@ -17,7 +17,7 @@ public class Main {
         return null;
     }
 
-    private static void createAccount(ArrayList<BankAccount> bankAccounts){
+    public static void createAccount(ArrayList<BankAccount> bankAccounts){
 
         System.out.printf("\n" + "Enter Account Number: ");
         int accountNumber = scanner.nextInt();
@@ -56,13 +56,13 @@ public class Main {
         System.out.println("Account created successfully");
     }
 
-    private static void viewAccounts(ArrayList<BankAccount> bankAccounts){
+    public static void viewAccounts(ArrayList<BankAccount> bankAccounts){
         for (int i = 0; i < bankAccounts.size(); i++ ){
             bankAccounts.get(i).displayInformation();
         }
     }
 
-    private static void checkBalance(ArrayList<BankAccount> bankAccounts){
+    public static void checkBalance(ArrayList<BankAccount> bankAccounts){
         while (true){
             System.out.printf("\n" + "Enter Account Number: ");
             int accountNumber = scanner.nextInt();
@@ -78,7 +78,7 @@ public class Main {
         }
     }
 
-    private static void depositToAccount(ArrayList<BankAccount> bankAccounts) {
+    public static void depositToAccount(ArrayList<BankAccount> bankAccounts) {
 
         while (true) {
             System.out.printf("\n" + "Enter Account Number: ");
@@ -111,7 +111,7 @@ public class Main {
 
     }
 
-    private static void widthdrawFromAccount(ArrayList<BankAccount> bankAccounts){
+    public static void widthdrawFromAccount(ArrayList<BankAccount> bankAccounts){
 
         while(true){
             System.out.printf("\n" + "Enter Account Number: ");
