@@ -4,24 +4,24 @@ import java.io.ByteArrayInputStream;
 import java.util.*;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MainTest {
 
-    static  ArrayList<BankAccount> bankAccounts = new ArrayList<>();
 
-    private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
+    private final InputStream originalIn = System.in;
 
     private BankAccount bankAccount;
 
+    private ArrayList<BankAccount> bankAccounts;
+
     @BeforeEach
-    void setup() {
+    void setUp() {
+        bankAccounts = new ArrayList<>();
 
         bankAccount = new BankAccount();
         bankAccount.setAccountName("Tyrell");
@@ -31,34 +31,33 @@ public class MainTest {
         bankAccounts.add(bankAccount);
     }
 
-//    @Test
-//    public void testValidDepositAmount(){
-//        double deposit = 1000.0;
-//        bankAccount.deposit(deposit);
-//        assertEquals(deposit, bankAccount.getAccountBalance(), 0.001);
-//    }
-//
-//    @Test
-//    public void testInvalidDepositAmount(){
-//        double deposit = -1000.0;
-//        bankAccount.deposit(deposit);
-//        assertEquals(deposit, bankAccount.getAccountBalance(), 0.001);
-//    }
+    @AfterEach
+    void restoreSystemInput() {
+        System.setIn(originalIn);
+    }
 
     @Test
     public void testValidWidthdrawAmount(){
-        String simulatedInput = "1\n200\n";
-        InputStream originalIn = System.in;
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
+        //https://www.geeksforgeeks.org/advance-java/unit-testing-system-in-for-input-handling-in-junit/
 
-        
+        String userInput = "1\n200\n";
+        System.setIn(new ByteArrayInputStream(userInput.getBytes()));
+
         Main.widthdrawFromAccount(bankAccounts); // assuming the method is in class `Main`
 
-
         assertEquals(800, bankAccounts.get(0).getAccountBalance(), 0.001); // Account balance should now be 800
+    }
 
+    @Test
+    public void testValidDepositAmount(){
+        //https://www.geeksforgeeks.org/advance-java/unit-testing-system-in-for-input-handling-in-junit/
 
-        System.setIn(originalIn);
+        String userInput = "1\n500.0\n";
+        System.setIn(new ByteArrayInputStream(userInput.getBytes()));
+
+        Main.depositToAccount(bankAccounts);
+
+        assertEquals(1500, bankAccounts.get(0).getAccountBalance(), 0.001); // Account balance should now be 800
     }
 
     @Test

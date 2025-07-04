@@ -4,8 +4,6 @@ import java.util.*;
 
 public class Main {
 
-    static Scanner scanner = new Scanner(System.in);
-
     public static BankAccount lookForAccount(ArrayList<BankAccount> bankAccounts, int accountNumber){
 
         for (int i =0; i < bankAccounts.size(); i++){
@@ -18,6 +16,8 @@ public class Main {
     }
 
     public static void createAccount(ArrayList<BankAccount> bankAccounts){
+
+        Scanner scanner = new Scanner(System.in);
 
         System.out.printf("\n" + "Enter Account Number: ");
         int accountNumber = scanner.nextInt();
@@ -63,6 +63,9 @@ public class Main {
     }
 
     public static void checkBalance(ArrayList<BankAccount> bankAccounts){
+
+        Scanner scanner = new Scanner(System.in);
+
         while (true){
             System.out.printf("\n" + "Enter Account Number: ");
             int accountNumber = scanner.nextInt();
@@ -80,6 +83,8 @@ public class Main {
 
     public static void depositToAccount(ArrayList<BankAccount> bankAccounts) {
 
+        Scanner scanner = new Scanner(System.in);
+
         while (true) {
             System.out.printf("\n" + "Enter Account Number: ");
             int accountNumber = scanner.nextInt();
@@ -93,6 +98,7 @@ public class Main {
                     double depositAmount = scanner.nextDouble();
 
                     if (depositAmount < 0) {
+                        System.out.println("Invalid Amount!");
                         continue;
                     }
 
@@ -112,6 +118,8 @@ public class Main {
     }
 
     public static void widthdrawFromAccount(ArrayList<BankAccount> bankAccounts){
+
+        Scanner scanner = new Scanner(System.in);
 
         while(true){
             System.out.printf("\n" + "Enter Account Number: ");
@@ -156,6 +164,8 @@ public class Main {
         System.out.println("6. Exit");
 
         while (true) {
+
+            Scanner scanner = new Scanner(System.in);
 
             System.out.printf("\n" + "Enter Choice (1-6): ");
             int userOption = scanner.nextInt();
