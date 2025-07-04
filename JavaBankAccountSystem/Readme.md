@@ -1,5 +1,5 @@
-Lab 1: Build a Java Bank Account System
+Lab 2: Unit Testing
 
 Tyrell Marcus I. Teppang
 
-<img src="Lab1-OOP-Teppang-Screenshot.png">
+<img src="Lab2-OOP-Teppang-Screenshot.png">
