@@ -61,6 +61,54 @@ public class MainTest {
     }
 
     @Test
+    public void testInvalidWidthdrawAmount_NegativeValue(){
+        //https://www.geeksforgeeks.org/advance-java/unit-testing-system-in-for-input-handling-in-junit/
+
+        String userInput = "1\n-500.0\n-500.0\n0";
+        System.setIn(new ByteArrayInputStream(userInput.getBytes()));
+
+        Main.widthdrawFromAccount(bankAccounts);
+
+        assertEquals(1000, bankAccounts.get(0).getAccountBalance(), 0.001); // Account balance should now be 800
+    }
+
+    @Test
+    public void testInvalidWidthdrawAmount_ExceedsBalance(){
+        //https://www.geeksforgeeks.org/advance-java/unit-testing-system-in-for-input-handling-in-junit/
+
+        String userInput = "1\n500000.0\n500000.0\n0";
+        System.setIn(new ByteArrayInputStream(userInput.getBytes()));
+
+        Main.widthdrawFromAccount(bankAccounts);
+
+        assertEquals(1000, bankAccounts.get(0).getAccountBalance(), 0.001); // Account balance should now be 800
+    }
+
+    @Test
+    public void testInvalidDepositAmount(){
+        //https://www.geeksforgeeks.org/advance-java/unit-testing-system-in-for-input-handling-in-junit/
+
+        String userInput = "1\n-500.0\n-500.0\n0";
+        System.setIn(new ByteArrayInputStream(userInput.getBytes()));
+
+        Main.depositToAccount(bankAccounts);
+
+        assertEquals(1000, bankAccounts.get(0).getAccountBalance(), 0.001); // Account balance should now be 800
+    }
+
+    @Test
+    public void testCreateAccountWithNoBalance(){
+        //https://www.geeksforgeeks.org/advance-java/unit-testing-system-in-for-input-handling-in-junit/
+
+        String userInput = "1\n500000.0\n500000.0\n0";
+        System.setIn(new ByteArrayInputStream(userInput.getBytes()));
+
+        Main.widthdrawFromAccount(bankAccounts);
+
+        assertEquals(1000, bankAccounts.get(0).getAccountBalance(), 0.001); // Account balance should now be 800
+    }
+
+    @Test
     public void testGetAccountNumberMethod(){
         int accountNumber = 1;
         bankAccount.getAccountNumber();
