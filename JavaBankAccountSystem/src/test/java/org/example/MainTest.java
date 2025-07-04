@@ -100,12 +100,19 @@ public class MainTest {
     public void testCreateAccountWithNoBalance(){
         //https://www.geeksforgeeks.org/advance-java/unit-testing-system-in-for-input-handling-in-junit/
 
-        String userInput = "1\n500000.0\n500000.0\n0";
+        BankAccount expected = new BankAccount();
+        expected.setAccountNumber(2);
+        expected.setAccountName("Lebron James");
+        bankAccounts.add(expected);
+
+        BankAccount actual = bankAccounts.get(1);
+
+        String userInput = "2\nLebron_James\nno";
         System.setIn(new ByteArrayInputStream(userInput.getBytes()));
 
-        Main.widthdrawFromAccount(bankAccounts);
+        Main.createAccount(bankAccounts);
 
-        assertEquals(1000, bankAccounts.get(0).getAccountBalance(), 0.001); // Account balance should now be 800
+        assertEquals(expected, actual); // Account balance should now be 800
     }
 
     @Test
